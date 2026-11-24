@@ -1,0 +1,4 @@
+plan,customers,churn_rate,avg_csat,avg_res_days
+Basic,2260,0.362,3.008,2.877
+Premium,970,0.376,2.998,2.953
+Standard,1770,0.362,3.048,2.868

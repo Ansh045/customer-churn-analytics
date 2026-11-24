@@ -1,0 +1,40 @@
+{
+  "crm_rows_raw": 5060,
+  "duplicates_removed": 60,
+  "invalid_age_fixed": 25,
+  "missing_region_filled": 80,
+  "validation_checks": "8/8 passed",
+  "churn_rate": 0.365,
+  "ttest_resolution_days": {
+    "churned_mean": 3.53,
+    "retained_mean": 2.52,
+    "p": 1.27e-45
+  },
+  "anova_churn_by_plan_p": 0.718,
+  "chi2_region_p": 0.621,
+  "correlation_with_churn": {
+    "churned": 1.0,
+    "n_tickets": 0.18,
+    "avg_res_days": 0.221,
+    "avg_csat": -0.172,
+    "tenure_months": -0.133,
+    "avg_disc": -0.008
+  },
+  "auc_logistic": 0.692,
+  "auc_random_forest": 0.687,
+  "rf_cv_auc_mean": 0.696,
+  "rf_cv_auc_std": 0.014,
+  "top_features": {
+    "avg_res_days": 0.316,
+    "avg_csat": 0.17,
+    "tenure_months": 0.149,
+    "n_tickets": 0.106
+  },
+  "high_risk_customers": 398,
+  "high_risk_actual_churn": 0.882,
+  "monthly_revenue_at_risk_high_band": 213600,
+  "churn_fast_vs_slow_resolution": [
+    0.282,
+    0.48
+  ]
+}
