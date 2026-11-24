@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Customer Churn Analytics | Ansh Shirpurkar</title>
+<style>
+:root{--bg:#f7f8fa;--card:#fff;--tx:#1c2430;--mu:#667085;--ac:#2563eb;--bd:#e4e7ec;--hi:#dc2626}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1520;--card:#182131;--tx:#e8edf5;--mu:#98a2b3;--ac:#60a5fa;--bd:#2a3649;--hi:#f87171}}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--tx);line-height:1.55}
+.w{max-width:1000px;margin:auto;padding:24px 16px}
+header{padding:32px 0 8px}h1{margin:0;font-size:1.9rem}p.s{color:var(--mu);margin:6px 0}
+.badge{display:inline-block;background:var(--card);border:1px solid var(--bd);border-radius:999px;padding:3px 12px;font-size:.8rem;margin:3px 4px 0 0;color:var(--mu)}
+.note{border-left:4px solid var(--ac);background:var(--card);padding:10px 14px;border-radius:6px;font-size:.9rem;margin:16px 0}
+.kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:16px 0}
+.k{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px}.k b{font-size:1.6rem;display:block;color:var(--ac)}.k span{font-size:.8rem;color:var(--mu)}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.c{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:16px}.c h3{margin:0 0 2px;font-size:1rem}.c small{color:var(--mu)}
+.r{display:flex;align-items:center;gap:8px;margin:8px 0;font-size:.85rem}.r .l{width:105px;flex:none}.r .t{flex:1;background:var(--bd);border-radius:4px;height:18px;overflow:hidden}
+.r .f{height:100%;background:var(--ac);border-radius:4px}.r .v{width:46px;text-align:right;flex:none}
+h2{margin:28px 0 8px;font-size:1.25rem}ol,ul{padding-left:20px}a{color:var(--ac)}footer{color:var(--mu);font-size:.85rem;padding:24px 0}
+table{width:100%;border-collapse:collapse;font-size:.9rem}td,th{padding:6px;border-bottom:1px solid var(--bd);text-align:left}
+</style></head><body><div class="w">
+<header><h1>Customer Churn &amp; Retention Analytics</h1>
+<p class="s">Multi-source data pipeline: SQL, Python, statistics, ML and KPI monitoring</p>
+<span class="badge">Python</span><span class="badge">SQL</span><span class="badge">Pandas</span><span class="badge">scikit-learn</span><span class="badge">Power BI-ready</span></header>
+<div class="note"><b>Simulated dataset.</b> Data and churn label are synthetic, generated to demonstrate the end-to-end workflow. Findings illustrate the method, not real company results.</div>
+<div class="kp"><div class="k"><b>3</b><span>Data sources integrated</span></div><div class="k"><b>36.5%</b><span>Overall churn rate</span></div><div class="k"><b>8/8</b><span>Validation checks passed</span></div><div class="k"><b>0.70</b><span>Random Forest CV ROC-AUC</span></div></div>
+<h2>Key Visuals</h2><div class="g">
+<div class="c"><h3>Churn rate by resolution speed</h3><small>Slower ticket resolution, higher churn (t-test p &lt; 0.001)</small><div id="res"></div></div>
+<div class="c"><h3>Top churn drivers</h3><small>Random Forest feature importance</small><div id="imp"></div></div>
+<div class="c"><h3>Churn rate by plan</h3><small>No significant difference (ANOVA p = 0.72)</small><div id="plan"></div></div>
+<div class="c"><h3>Churn rate by region</h3><small>No significant difference (chi-square p = 0.62)</small><div id="region"></div></div>
+<div class="c"><h3>Correlation with churn</h3><small>Pearson r</small><div id="corr"></div></div>
+<div class="c"><h3>Customers by risk band</h3><small>Model risk score (dashboard demo)</small><div id="risk"></div></div></div>
+<h2>Pipeline</h2><ol><li><b>Collect:</b> CRM CSV, SQL billing database (40,000 transactions), support tickets (9,000)</li>
+<li><b>Clean:</b> removed 60 duplicates, fixed 25 invalid ages, filled 80 missing regions</li>
+<li><b>Integrate:</b> SQL aggregation plus Pandas joins into one 5,000-customer dataset</li>
+<li><b>Validate:</b> 8 automated data-quality checks</li>
+<li><b>Analyse:</b> t-test, ANOVA, chi-square, correlation</li>
+<li><b>Model:</b> Logistic Regression and Random Forest, train/test split and 5-fold CV</li></ol>
+<h2>Model Results</h2><table><tr><th>Model</th><th>ROC-AUC</th></tr><tr><td>Logistic Regression (test)</td><td>0.69</td></tr><tr><td>Random Forest (test)</td><td>0.69</td></tr><tr><td>Random Forest (5-fold CV)</td><td>0.70 &plusmn; 0.01</td></tr></table>
+<h2>Recommendation</h2><p>Prioritise faster ticket resolution and outreach to low-CSAT customers, rather than plan- or region-based campaigns. Customers with slower-than-median resolution churned at 48.0% versus 28.2% for faster ones.</p>
+<h2>Limitations</h2><ul><li>Moderate AUC; model is used to rank drivers, not predict precisely</li><li>Synthetic data</li></ul>
+<footer>Built by Ansh Shirpurkar &middot; <a href="https://github.com/Ansh045">GitHub</a> &middot; <a href="https://www.linkedin.com/in/ansh-shirpurkar-129554258/">LinkedIn</a></footer></div>
+<script>
+const D={"plan": {"Basic": 0.362, "Premium": 0.376, "Standard": 0.362}, "region": {"Central": 0.36, "East": 0.384, "North": 0.363, "South": 0.371, "Unknown": 0.375, "West": 0.345}, "risk": {"Low": 2008, "Medium": 2594, "High": 398}, "res": {"Fastest": 0.268, "Fast": 0.349, "Mid": 0.247, "Slow": 0.418, "Slowest": 0.549}, "corr": {"n_tickets": 0.18, "avg_res_days": 0.221, "avg_csat": -0.172, "tenure_months": -0.133, "avg_disc": -0.008}, "imp": {"Resolution days": 0.316, "CSAT": 0.17, "Tenure": 0.149, "Tickets": 0.106}};
+function bars(id,o,pct=true,max=null){const m=max||Math.max(...Object.values(o).map(Math.abs));
+document.getElementById(id).innerHTML=Object.entries(o).map(([k,v])=>`<div class="r"><div class="l">${k}</div><div class="t"><div class="f" style="width:${Math.abs(v)/m*100}%;${v<0?'background:var(--hi)':''}"></div></div><div class="v">${pct?(v*100).toFixed(1)+'%':v}</div></div>`).join('')}
+bars('res',D.res,true,.6);bars('imp',D.imp,true);bars('plan',D.plan,true,.6);bars('region',D.region,true,.6);bars('corr',D.corr,false,.3);bars('risk',D.risk,false)
+</script></body></html>
